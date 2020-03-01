@@ -5,27 +5,27 @@ class Solution {
 
   static int[] getIndicesOfItemWeights(int[] arr, int limit) {
     // your code goes here
-
-    if (arr.length <= 0 || arr.length == 1) {
+    if(arr.length < 0) {
       int[] res = {};
       return res;
-        }
+    }
+    if(arr.length == 1){
+      int[] res = {};
+      return res;
+    }
     HashMap<Integer, Integer> map = new HashMap<>();
-     int[] result = new int[2];
-
-    int j = 0;
+    int[] result = new int[2];
+    
     for(int i = 0; i < arr.length; i++) {
-      int value = limit - arr[i];
-      if(map.containsKey(value)) {
-        int index = map.get(value);
-        result[j] = i;
-        j++;
-        result[j] = index;
+      int dif = limit - arr[i];
+      if(map.containsKey(dif)) {
+        int val = map.get(dif);
+        result[0] = i;
+        result[1] = val;
       }
       map.put(arr[i], i);
     }
-     return result;  
-    
+    return result;
   }
 
   public static void main(String[] args) {
